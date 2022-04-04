@@ -29,11 +29,12 @@ public class GameStateInit : GameState
     {
         gameManager.ChangeState(GetComponent<GameStateGame>());
         GameStats.Instance.ResetSession();
+        GetComponent<GameStateDeath>().EnableRevive();
     }
 
     public void OnShopClick()
     {
-        //gameManager.ChangeState(GetComponent<GameStateShop>());
+        gameManager.ChangeState(GetComponent<GameStateShop>());
         Debug.Log("Shop button has been clicked.");
     }
 }

@@ -21,18 +21,21 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Letters
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_Shader: {fileID: -6465566751694194690, guid: 16cd98ebf802de840824b6efe430b4af, type: 3}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_03b19b6fd4644cf7a8b7cab568946b8f:
+        m_Texture: {fileID: 2800000, guid: ecb68052ab7eb6e4ab64bbb13349e3c7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_360CD7C4:
         m_Texture: {fileID: 2800000, guid: ecb68052ab7eb6e4ab64bbb13349e3c7, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -95,7 +98,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_253A888: 1
+    - Vector1_527089a0484649bd833269697f7e9d53: 100
+    - Vector1_836590d000954b60b601be653324f78f: 1.5
     - Vector1_995B999E: 0.005
+    - Vector1_ce1f61aa3b654dafac6c425b7acb9ad8: 2
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -116,7 +122,7 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -125,9 +131,14 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - Color_a6d0e511d1b44f39b8a1ec06147be257: {r: 0.030838395, g: 0.28634623, b: 0.9339623, a: 0}
+    - Color_ba63cc14e12d44c6a63f22220cc8505e: {r: 0.43867922, g: 0.7476823, b: 1, a: 0}
+    - Vector2_1f7c79c30dde45acb305e2a7f49e45fc: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_2ca782ea89044f569de0d7b9e36a5467: {r: 0.2, g: 2, b: 0, a: 0}
+    - Vector2_9b4950d6cdaa435e8ed26cecd4828d3d: {r: 0, g: 0, b: 0, a: 0}
+    - _BaseColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0, g: 281.09805, b: 493.9294, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - snowOffset: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

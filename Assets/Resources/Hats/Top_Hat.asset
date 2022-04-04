@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7066f90a87796c448b3c649ec2f0e3aa, type: 3}
+  m_Name: Top_Hat
+  m_EditorClassIdentifier: 
+  ItemName: Top Hat
+  ItemPrice: 10
+  Thumbnail: {fileID: 21300000, guid: b68784f486ba8e74f93e733f7b3b06b1, type: 3}
+  Model: {fileID: 8189180509540738587, guid: 8d792389d95d8054ca724e55ff8d73b9, type: 3}

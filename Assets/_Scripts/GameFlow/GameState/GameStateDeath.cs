@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
 
-public class GameStateDeath : GameState
+public class GameStateDeath : GameState, IUnityAdsShowListener
 {
     public GameObject deathCanvas;
     [SerializeField] private TMP_Text highscoreText, scoreText, totalCollectablesText, collectablesText;
@@ -36,8 +37,6 @@ public class GameStateDeath : GameState
 
         deathTime = Time.time;
 
-        completionCircle.gameObject.SetActive(true);
-
         deathCanvas.SetActive(true);
     }
 
@@ -66,9 +65,44 @@ public class GameStateDeath : GameState
 
     }
 
+    public void TryResumeGame()
+    {
+        AdManager.Instance.ShowRewardedAdd();
+    }
+
     public void ResumeGame()
     {
         gameManager.ChangeState(GetComponent<GameStateGame>());
         GameManager.Instance.motor.RespawnPlayer();
     }
+
+    public void EnableRevive()
+    {
+        completionCircle.gameObject.SetActive(true);
+    }
+
+    #region IUnityAdsShowListener_Implementation
+    public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
+    {
+        Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
+        // Optionally execute code if the Ad Unit fails to show, such as loading another ad.
+    }
+
+    public void OnUnityAdsShowStart(string adUnitId) { }
+    public void OnUnityAdsShowClick(string adUnitId) { }
+    public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState) 
+    {
+        completionCircle.gameObject.SetActive(false);
+        switch (showCompletionState)
+        {
+            case UnityAdsShowCompletionState.COMPLETED:
+                ResumeGame();
+                break;
+
+            case UnityAdsShowCompletionState.UNKNOWN:
+                ToMenu();
+                break;
+        }
+    }
+    #endregion
 }
