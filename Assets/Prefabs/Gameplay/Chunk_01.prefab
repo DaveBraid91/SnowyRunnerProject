@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647ac513b67ead44dafca0d6e101004b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkLength: 20
+  chunkLength: 22.5
 --- !u!1001 &2497626130161233361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3134282172605977397, guid: 2e4df46d10da0eb49a17688f78fb23f4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e4df46d10da0eb49a17688f78fb23f4, type: 3}

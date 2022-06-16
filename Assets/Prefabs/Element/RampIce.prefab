@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1162123604812895108}
   - component: {fileID: 1162123604810027940}
   - component: {fileID: 1162123604811125092}
-  - component: {fileID: -5842942452283875221}
   m_Layer: 0
   m_Name: RampIce
   m_TagString: Untagged
@@ -83,20 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-5842942452283875221
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162123604813385636}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 4dd9c515bc6e5d54eb35e10ddc897c49, type: 3}
 --- !u!1 &3134282172605977397
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3134282172605977397}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0.803, z: -1.24}
+  m_LocalPosition: {x: 0, y: 0.908, z: -1.345}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1162123604812895108}
@@ -139,5 +124,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0, y: 0.9831419, z: 3.1128793}
-  m_Center: {x: 0.5, y: -0.008433823, z: 0.33435416}
+  m_Size: {x: 2, y: 1, z: 3.2}
+  m_Center: {x: 0, y: -0.008433823, z: 0.33435416}

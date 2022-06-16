@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeCamera(CameraState cameraState)
     {
-        foreach(GameObject camera in  cameras)
+        foreach(GameObject camera in cameras)
         {
             camera.SetActive(false);
         }

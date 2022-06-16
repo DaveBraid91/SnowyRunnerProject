@@ -8,9 +8,10 @@ using UnityEngine.UI;
 public class GameStateShop : GameState
 {
     public GameObject shopCanvas;
-    [SerializeField] TMP_Text collectablesScoreText;
-    [SerializeField] TMP_Text currentHatName;
-    [SerializeField] HatLogic hatLogic;
+    [SerializeField] private TMP_Text collectablesScoreText;
+    [SerializeField] private TMP_Text currentHatName;
+    [SerializeField] private HatLogic hatLogic;
+    private int unlockedHats;
 
     [Header("Shop Items")]
     public GameObject hatPrefab;
@@ -18,12 +19,16 @@ public class GameStateShop : GameState
     [SerializeField]
     private Hat[] hats;
 
+    [Header("Completion Circle")] 
+    public Image completionCircleImage;
+    public TMP_Text completionTMP;
     protected override void Awake()
     {
         base.Awake();
         hats = Resources.LoadAll<Hat>("Hats/");
         InitializeShop();
         UpdateCurrentHatName(SaveManager.Instance.saveState.CurrentHatIndex);
+        UpdateCompletionCircle();
     }
 
     public override void Construct()
@@ -34,7 +39,7 @@ public class GameStateShop : GameState
 
         shopCanvas.SetActive(true);
     }
-
+    
     public override void Destruct()
     {
         shopCanvas.SetActive(false);
@@ -56,6 +61,7 @@ public class GameStateShop : GameState
             if(SaveManager.Instance.saveState.UnlockedHatFlag[i] == 1)
             {
                 hatInstance.transform.GetChild(2).GetComponent<TMP_Text>().text = "";
+                unlockedHats++;
             }
             else
             {
@@ -83,6 +89,14 @@ public class GameStateShop : GameState
         currentHatName.text = hats[i].ItemName;
     }
 
+    private void UpdateCompletionCircle()
+    {
+        int hatCount = hats.Length - 1;
+        int currentlyUnlockedHatsCount = unlockedHats - 1;
+        completionCircleImage.fillAmount = (float)currentlyUnlockedHatsCount / (float)hatCount;
+        completionTMP.text = currentlyUnlockedHatsCount + "/" + hatCount;
+    }
+
     private void OnHatClick(int i)
     {
         if(SaveManager.Instance.saveState.UnlockedHatFlag[i] == 1)
@@ -93,7 +107,9 @@ public class GameStateShop : GameState
         {
             SaveManager.Instance.saveState.TotalCollectables -= hats[i].ItemPrice;
             SaveManager.Instance.saveState.UnlockedHatFlag[i] = 1;
+            unlockedHats++;
             UpdateCollectablesScoreText();
+            UpdateCompletionCircle();
             hatContainer.GetChild(i).transform.GetChild(2).GetComponent<TMP_Text>().text = "";
             ChangeHat(i);
 
