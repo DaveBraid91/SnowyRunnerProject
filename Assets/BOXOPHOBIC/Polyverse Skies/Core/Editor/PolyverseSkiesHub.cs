@@ -1,11 +1,11 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
+using BOXOPHOBIC.Utils.Editor.SettingsUtils;
+using BOXOPHOBIC.Utils.Editor.StyledGUI;
 using UnityEditor;
-using Boxophobic.StyledGUI;
-using Boxophobic.Utils;
+using UnityEngine;
 
-namespace PolyverseSkiesAsset
+namespace BOXOPHOBIC.Polyverse_Skies.Core.Editor
 {
     public class PolyverseSkiesHub : EditorWindow
     {

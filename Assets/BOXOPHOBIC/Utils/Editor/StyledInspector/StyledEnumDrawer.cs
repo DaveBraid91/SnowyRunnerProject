@@ -1,11 +1,12 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
-using UnityEditor;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using BOXOPHOBIC.Utils.Scripts.StyledInspector;
+using UnityEditor;
+using UnityEngine;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Editor.StyledInspector
 {
     [CustomPropertyDrawer(typeof(StyledEnum))]
     public class StyledEnumAttributeDrawer : PropertyDrawer

@@ -1,9 +1,9 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Editor.StyledMaterial
 {
     public class StyledTextureDrawer : MaterialPropertyDrawer
     {

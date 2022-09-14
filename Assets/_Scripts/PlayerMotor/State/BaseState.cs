@@ -1,23 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseState : MonoBehaviour
+namespace _Scripts.PlayerMotor.State
 {
-    protected PlayerMotor motor;
-
-    private void Awake()
+    public abstract class BaseState : MonoBehaviour
     {
-        motor = GetComponent<PlayerMotor>();
-    }
+        protected PlayerMotor motor;
 
-    public virtual void Construct() { }
-    public virtual void Destruct() { }
-    public virtual void Transition() { }
-
-    public virtual Vector3 ProcessMotion()
-    {
-        Debug.Log("Process motion is not implemented in " + this.ToString());
-        return Vector3.zero;
+        private void Awake()
+        {
+            motor = GetComponent<PlayerMotor>();
+        }
+        /// <summary>
+        /// When a state is called, the logic to construct that state will be run here
+        /// </summary>
+        public virtual void Construct() { }
+        /// <summary>
+        /// When a state is called, the logic to destruct and exit the previous state will be run here
+        /// </summary>
+        public virtual void Destruct() { }
+        /// <summary>
+        /// When a state is running, the transition logic possibilities to other states will be here
+        /// </summary>
+        public virtual void Transition() { }
+        
+        /// <summary>
+        /// The motion of the player will be processed here
+        /// </summary>
+        /// <returns>The resulting motion</returns>
+        public virtual Vector3 ProcessMotion()
+        {
+            Debug.Log($"Process motion is not implemented in {this}");
+            return Vector3.zero;
+        }
     }
 }

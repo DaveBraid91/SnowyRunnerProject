@@ -1,75 +1,90 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using _Scripts.GameFlow;
 using UnityEngine;
 
-public class GameStats : MonoBehaviour
+namespace _Scripts
 {
-
-    private static GameStats instance;
-    public static GameStats Instance { get { return instance; } }
-
-    //Score
-    public float score;
-    public float highScore;
-    public float distanceModifier = 1.5f;
-
-    //Collectables
-    public int totalCollectables;
-    public int collectedThisRound;
-    public float pointsCollectable = 10.0f;
-
-    //Internal Cooldown
-    private float lastScoreUpdate;
-    private float scoreUpdateDelta = 0.2f;
-
-    //Action
-    public Action<int> OnCollectableChange;
-    public Action<float> OnScoreChange;
-
-    private void Awake()
+    public class GameStats : MonoBehaviour
     {
-        instance = this;
-    }
 
-    private void Update()
-    {
-        float s = GameManager.Instance.motor.transform.position.z * distanceModifier;
-        s += collectedThisRound * pointsCollectable;
+        private static GameStats _instance;
+        public static GameStats Instance { get { return _instance; } }
 
-        if (s > score)
+        //Score
+        public float score;
+        public float highScore;
+        public float distanceModifier = 1.5f;
+
+        //Collectables
+        public int totalCollectables;
+        public int collectedThisRound;
+        public float pointsCollectable = 10.0f;
+
+        //Internal Cooldown
+        private float _lastScoreUpdate;
+        private float _scoreUpdateDelta = 0.2f;
+
+        //Action
+        public Action<int> OnCollectableChange;
+        public Action<float> OnScoreChange;
+
+        private void Awake()
         {
-            score = s;
-            if(Time.time - lastScoreUpdate > scoreUpdateDelta)
-            {
-                lastScoreUpdate = Time.time;
-                OnScoreChange?.Invoke(score);
-            }
+            _instance = this;
         }
-    }
 
-    public void CollectCollectable()
-    {
-        collectedThisRound++;
-        OnCollectableChange?.Invoke(collectedThisRound);
-    }
+        private void Update()
+        {
+            //Score System
+            var s = GameManager.Instance.motor.transform.position.z * distanceModifier;
+            s += collectedThisRound * pointsCollectable;
 
-    public void ResetSession()
-    {
-        score = 0;
-        collectedThisRound = 0;
+            if (!(s > score)) return;
+            score = s;
+            //The score is updated on the UI every _scoreUpdateDelta, so the UI doesnt have to render
+            //every frame, which would cause a big performance issue for mobile devices
+            if (!(Time.time - _lastScoreUpdate > _scoreUpdateDelta)) return;
+            _lastScoreUpdate = Time.time;
+            OnScoreChange?.Invoke(score);
+        }
+        
+        /// <summary>
+        /// Updates the collectables collected this round and invokes OnCollectableChange
+        /// </summary>
+        public void CollectCollectable()
+        {
+            collectedThisRound++;
+            OnCollectableChange?.Invoke(collectedThisRound);
+        }
 
-        OnScoreChange?.Invoke(score);
-        OnCollectableChange?.Invoke(collectedThisRound);
-    }
+        /// <summary>
+        /// Resets the stats
+        /// </summary>
+        public void ResetSession()
+        {
+            score = 0;
+            collectedThisRound = 0;
 
-    public string ScoreToText()
-    {
-        return ((int)score).ToString("0000000");
-    }
+            OnScoreChange?.Invoke(score);
+            OnCollectableChange?.Invoke(collectedThisRound);
+        }
 
-    public string CollectablesToText()
-    {
-        return "x" + collectedThisRound.ToString("000");
+        /// <summary>
+        /// Transforms the score float without decimals to a string with the format "0000000"
+        /// </summary>
+        /// <returns>The formatted string</returns>
+        public string ScoreToText()
+        {
+            return ((int)score).ToString("0000000");
+        }
+
+        /// <summary>
+        /// Transforms the collectables int to a string with the format "000"
+        /// </summary>
+        /// <returns>The formatted string</returns>
+        public string CollectablesToText()
+        {
+            return $"x{collectedThisRound:000}";
+        }
     }
 }

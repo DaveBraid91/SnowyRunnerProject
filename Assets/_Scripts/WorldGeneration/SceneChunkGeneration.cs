@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SceneChunkGeneration : WorldGeneration
+namespace _Scripts.WorldGeneration
 {
+    public class SceneChunkGeneration : WorldGeneration
+    {
 
+    }
 }
 

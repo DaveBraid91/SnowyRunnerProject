@@ -1,10 +1,9 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
-using Boxophobic.Constants;
+using UnityEngine;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Editor.StyledMaterial
 {
     public class StyledBannerDrawer : MaterialPropertyDrawer
     {
@@ -17,7 +16,7 @@ namespace Boxophobic.StyledGUI
 
         public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor materialEditor)
         {
-            StyledGUI.DrawInspectorBanner(title);
+            StyledGUI.StyledGUI.DrawInspectorBanner(title);
         }
 
         public override float GetPropertyHeight(MaterialProperty prop, string label, MaterialEditor editor)

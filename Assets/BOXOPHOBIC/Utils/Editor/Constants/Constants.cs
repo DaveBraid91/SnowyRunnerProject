@@ -1,9 +1,8 @@
 ﻿//  Cristian Pop - https://boxophobic.com/
 
 using UnityEngine;
-using UnityEditor;
 
-namespace Boxophobic.Constants
+namespace BOXOPHOBIC.Utils.Editor.Constants
 {
     public static class CONSTANT
     {

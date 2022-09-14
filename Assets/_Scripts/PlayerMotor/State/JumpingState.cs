@@ -1,33 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpingState : BaseState
+namespace _Scripts.PlayerMotor.State
 {
-    public float jumpForce = 7.0f;
-
-    public override void Construct()
+    public class JumpingState : BaseState
     {
-        motor.anim?.SetTrigger("Jump");
-        motor.verticalVelocity = jumpForce;
-    }
+        public float jumpForce = 7.0f;
 
-    public override Vector3 ProcessMotion()
-    {
-        // Apply gravity
-        motor.ApplyGravity();
+        public override void Construct()
+        {
+            //Trigger the "Jump" animation
+            motor.anim?.SetTrigger("Jump");
+            //Gives the body an instant vertical force, ergo the jump
+            motor.verticalVelocity = jumpForce;
+        }
 
-        //Create return Vector
-        Vector3 movement = Vector3.zero;
+        public override Vector3 ProcessMotion()
+        {
+            // Apply gravity
+            motor.ApplyGravity();
 
-        movement = new Vector3(motor.SnapToLane(), motor.verticalVelocity, motor.baseRunSpeed);
+            //Create return Vector
+            Vector3 movement = Vector3.zero;
+            //It can't swap lanes during the jump
+            movement = new Vector3(motor.SnapToLane(), motor.verticalVelocity, motor.baseRunSpeed);
 
-        return movement;
-    }
+            return movement;
+        }
 
-    public override void Transition()
-    {
-        if (motor.verticalVelocity < 0)
-            motor.ChangeState(GetComponent<FallingState>());
+        public override void Transition()
+        {
+            //It changes to the falling sate when it vertical velocity is negative
+            if (motor.verticalVelocity < 0)
+                motor.ChangeState(GetComponent<FallingState>());
+        }
     }
 }

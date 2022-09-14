@@ -1,10 +1,10 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
-using UnityEditor;
 using System;
+using UnityEditor;
+using UnityEngine;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Editor.StyledMaterial
 {
     public class StyledCategoryDrawer : MaterialPropertyDrawer
     {
@@ -64,7 +64,7 @@ namespace Boxophobic.StyledGUI
                 isEnabled = false;
             }
 
-            isEnabled = StyledGUI.DrawInspectorCategory(category, isEnabled, top, down, isColapsable);
+            isEnabled = StyledGUI.StyledGUI.DrawInspectorCategory(category, isEnabled, top, down, isColapsable);
 
             if (isEnabled)
             {

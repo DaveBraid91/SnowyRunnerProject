@@ -1,47 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameStateGame : GameState
+namespace _Scripts.GameFlow.GameState
 {
-    public GameObject gameCanvas;
-    [SerializeField] TMP_Text fishText;
-    [SerializeField] TMP_Text scoreText;
-
-    public override void Construct()
+    public class GameStateGame : GameState
     {
-        GameManager.Instance.motor.ResumePlayer();
-        GameManager.Instance.ChangeCamera(CameraState.Game);
+        public GameObject gameCanvas;
+        [SerializeField] private TMP_Text fishText;
+        [SerializeField] private TMP_Text scoreText;
 
-        GameStats.Instance.OnScoreChange += OnScoreChange; //(s) => { scoreText.text = s.ToString(); };
-        GameStats.Instance.OnCollectableChange += OnCollectCollectable;
+        public override void Construct()
+        {
+            //Let the player move and changes the camera to the game camera
+            GameManager.Instance.motor.ResumePlayer();
+            GameManager.Instance.ChangeCamera(CameraState.Game);
+            //Subscription to Actions
+            GameStats.Instance.OnScoreChange += OnScoreChange; //(s) => { scoreText.text = s.ToString(); };
+            GameStats.Instance.OnCollectableChange += OnCollectCollectable;
 
-        gameCanvas.SetActive(true);
-    }
+            gameCanvas.SetActive(true);
+        }
 
     
-    public override void UpdateState()
-    {
-        GameManager.Instance.worldGeneration.ScanPosition();
-        GameManager.Instance.sceneChunkGeneration.ScanPosition();
-    }
+        public override void UpdateState()
+        {
+            GameManager.Instance.worldGeneration.ScanPosition();
+            GameManager.Instance.sceneChunkGeneration.ScanPosition();
+        }
 
-    public override void Destruct()
-    {
-        gameCanvas.SetActive(false);
+        public override void Destruct()
+        {
+            gameCanvas.SetActive(false);
+            //desubscription to Actions
+            GameStats.Instance.OnScoreChange -= OnScoreChange;
+            GameStats.Instance.OnCollectableChange -= OnCollectCollectable;
+        }
+        
+        /// <summary>
+        /// Updates the score text in the UI
+        /// </summary>
+        /// <param name="score">new score</param>
+        private void OnScoreChange(float score)
+        {
+            scoreText.text = GameStats.Instance.ScoreToText();
+        }
 
-        GameStats.Instance.OnScoreChange -= OnScoreChange;
-        GameStats.Instance.OnCollectableChange -= OnCollectCollectable;
-    }
-
-    private void OnScoreChange(float score)
-    {
-        scoreText.text = GameStats.Instance.ScoreToText();
-    }
-
-    private void OnCollectCollectable(int amountCollected)
-    {
-        fishText.text = GameStats.Instance.CollectablesToText(); ;
+        /// <summary>
+        /// Updates the collectibles text in the UI
+        /// </summary>
+        /// <param name="amountCollected">new amount collected</param>
+        private void OnCollectCollectable(int amountCollected)
+        {
+            fishText.text = GameStats.Instance.CollectablesToText(); ;
+        }
     }
 }

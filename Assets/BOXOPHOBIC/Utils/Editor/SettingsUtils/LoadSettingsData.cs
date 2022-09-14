@@ -1,9 +1,10 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
 using System.Globalization;
+using BOXOPHOBIC.Utils.Scripts.SettingsUtils;
 using UnityEditor;
 
-namespace Boxophobic.Utils
+namespace BOXOPHOBIC.Utils.Editor.SettingsUtils
 {
     public partial class SettingsUtils
     {

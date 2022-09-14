@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Scripts.StyledInspector
 {
     public class StyledBanner : PropertyAttribute
     {

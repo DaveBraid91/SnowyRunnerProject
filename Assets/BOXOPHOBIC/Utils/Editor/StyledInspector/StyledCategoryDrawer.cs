@@ -1,9 +1,10 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
+using BOXOPHOBIC.Utils.Scripts.StyledInspector;
 using UnityEditor;
+using UnityEngine;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Editor.StyledInspector
 {
     [CustomPropertyDrawer(typeof(StyledCategory))]
     public class StyledCategoryAttributeDrawer : PropertyDrawer
@@ -14,7 +15,7 @@ namespace Boxophobic.StyledGUI
         {
             a = (StyledCategory)attribute;
 
-            property.boolValue = StyledGUI.DrawInspectorCategory(a.category, property.boolValue, a.top, a.down, a.colapsable);
+            property.boolValue = StyledGUI.StyledGUI.DrawInspectorCategory(a.category, property.boolValue, a.top, a.down, a.colapsable);
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

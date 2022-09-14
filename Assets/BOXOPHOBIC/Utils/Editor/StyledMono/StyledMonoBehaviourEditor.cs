@@ -1,11 +1,13 @@
 ﻿//#if UNITY_EDITOR
+
+using BOXOPHOBIC.Utils.Scripts.StyledMono;
 using UnityEditor;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Editor.StyledMono
 {
     [CustomEditor(typeof(StyledMonoBehaviour), true)]
     [CanEditMultipleObjects]
-    public class StyledMonoBehaviourEditor : Editor
+    public class StyledMonoBehaviourEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
