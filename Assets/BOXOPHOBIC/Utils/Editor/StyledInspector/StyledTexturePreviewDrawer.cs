@@ -1,10 +1,11 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
+using BOXOPHOBIC.Utils.Scripts.StyledInspector;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Editor.StyledInspector
 {
     [CustomPropertyDrawer(typeof(StyledTexturePreview))]
     public class StyledTexturePreviewAttributeDrawer : PropertyDrawer

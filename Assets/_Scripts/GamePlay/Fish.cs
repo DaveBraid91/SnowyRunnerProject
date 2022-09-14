@@ -1,39 +1,39 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish : MonoBehaviour
+namespace _Scripts.GamePlay
 {
-    [SerializeField]
-    private Animator anim;
-
-    private void Start()
+    public class Fish : MonoBehaviour
     {
-        anim = GetComponentInParent<Animator>();
-    }
+        [SerializeField]
+        private Animator anim;
 
-    // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Player"))
+        private void Start()
         {
-            PickUpFish();
+            anim = GetComponentInParent<Animator>();
         }
-    }
-
-    private void PickUpFish()
-    {
-        //increment fish count
-        //increment score
-        //play sfx
-        //trigger an animation
-        anim.SetTrigger("Pickup");
-        GameStats.Instance.CollectCollectable();
-    }
-
-    public void OnShowChunk()
-    {
-        anim.SetTrigger("Idle");
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("Player"))
+            {
+                PickUpFish();
+            }
+        }
+        /// <summary>
+        /// Triggers the pickup animation and informs GameStats when a fish is picked up
+        /// </summary>
+        private void PickUpFish()
+        {
+            //TODO: play sfx
+            anim.SetTrigger("Pickup");
+            GameStats.Instance.CollectCollectable();
+        }
+        /// <summary>
+        /// When a new chunk is shown, the Idle animation is activated
+        /// </summary>
+        public void OnShowChunk()
+        {
+            anim.SetTrigger("Idle");
+        }
     }
 }

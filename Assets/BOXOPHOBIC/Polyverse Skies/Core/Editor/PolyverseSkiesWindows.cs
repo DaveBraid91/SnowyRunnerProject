@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace PolyverseSkiesAsset
+namespace BOXOPHOBIC.Polyverse_Skies.Core.Editor
 {
     public static class PolyverseSkiesWindows
     {

@@ -1,9 +1,10 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
+using BOXOPHOBIC.Utils.Scripts.StyledInspector;
+using BOXOPHOBIC.Utils.Scripts.StyledMono;
 using UnityEngine;
-using Boxophobic.StyledGUI;
 
-namespace PolyverseSkiesAsset
+namespace BOXOPHOBIC.Polyverse_Skies.Core.Runtime
 {
     [DisallowMultipleComponent]
     [ExecuteInEditMode]

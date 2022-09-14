@@ -1,9 +1,10 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
+using BOXOPHOBIC.Utils.Scripts.StyledInspector;
 using UnityEditor;
+using UnityEngine;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Editor.StyledInspector
 {
     [CustomPropertyDrawer(typeof(StyledBanner))]
     public class StyledBannerAttributeDrawer : PropertyDrawer
@@ -16,7 +17,7 @@ namespace Boxophobic.StyledGUI
 
             var bannerColor = new Color(a.colorR, a.colorG, a.colorB);
 
-            StyledGUI.DrawInspectorBanner(bannerColor, a.title, a.helpURL);
+            StyledGUI.StyledGUI.DrawInspectorBanner(bannerColor, a.title, a.helpURL);
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

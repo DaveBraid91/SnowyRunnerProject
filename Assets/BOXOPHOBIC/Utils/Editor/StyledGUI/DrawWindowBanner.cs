@@ -1,10 +1,10 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
+using BOXOPHOBIC.Utils.Editor.Constants;
 using UnityEditor;
-using Boxophobic.Constants;
+using UnityEngine;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Editor.StyledGUI
 {
     public partial class StyledGUI
     {

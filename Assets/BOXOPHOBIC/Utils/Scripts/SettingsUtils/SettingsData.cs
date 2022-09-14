@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Boxophobic.Utils
+namespace BOXOPHOBIC.Utils.Scripts.SettingsUtils
 {
     [CreateAssetMenu(fileName = "Data", menuName = "BOXOPHOBIC/Settings Data")]
     public class SettingsData : ScriptableObject

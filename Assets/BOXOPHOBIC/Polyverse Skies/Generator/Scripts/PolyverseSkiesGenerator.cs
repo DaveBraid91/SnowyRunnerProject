@@ -1,11 +1,12 @@
 ﻿#if UNITY_EDITOR
 
+using System.IO;
+using BOXOPHOBIC.Utils.Scripts.StyledInspector;
+using BOXOPHOBIC.Utils.Scripts.StyledMono;
 using UnityEditor;
 using UnityEngine;
-using Boxophobic.StyledGUI;
-using System.IO;
 
-namespace PolyverseSkiesAsset
+namespace BOXOPHOBIC.Polyverse_Skies.Generator.Scripts
 {
     public enum CubemapType
     {

@@ -1,53 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Scripts.GameFlow.GameState;
+using _Scripts.WorldGeneration;
 using UnityEngine;
 
-public enum CameraState
+namespace _Scripts.GameFlow
 {
-    Init = 0,
-    Game = 1,
-    Shop = 2,
-    Respawn = 3
-}
-
-public class GameManager : MonoBehaviour
-{
-    private static GameManager instance;
-    public static GameManager Instance { get { return instance; } }
-    public GameObject[] cameras;
-
-    public PlayerMotor motor;
-    public WorldGeneration worldGeneration;
-    public SceneChunkGeneration sceneChunkGeneration;
-
-    private GameState state;
-
-    private void Awake()
+    /// <summary>
+    /// The camera states possible. Each one corresponds with a virtual CM camera.
+    /// If more cameras are added to the game, include them here.
+    /// </summary>
+    public enum CameraState
     {
-        instance = this;
-        state = GetComponent<GameStateInit>();
-        state.Construct();
+        Init = 0,
+        Game = 1,
+        Shop = 2,
+        Respawn = 3
     }
 
-    private void Update()
+    /// <summary>
+    /// The GameManager manages the game flow via the game states. It also chooses which camera to use depending
+    /// on the game state that is activated at the time.
+    /// </summary>
+    public class GameManager : MonoBehaviour
     {
-        state.UpdateState();
-    }
+        private static GameManager _instance;
+        public static GameManager Instance { get { return _instance; } }
+        public GameObject[] cameras;
 
-    public void ChangeState(GameState state)
-    {
-        this.state.Destruct();
-        this.state = state;
-        this.state.Construct();
-    }
+        public PlayerMotor.PlayerMotor motor;
+        public WorldGeneration.WorldGeneration worldGeneration;
+        public SceneChunkGeneration sceneChunkGeneration;
 
-    public void ChangeCamera(CameraState cameraState)
-    {
-        foreach(GameObject camera in cameras)
+        private GameState.GameState _state;
+
+        private void Awake()
         {
-            camera.SetActive(false);
+            if(_instance == null)
+                _instance = this;
+            else
+                Destroy(this.gameObject);
+   
+            _state = GetComponent<GameStateInit>();
+            _state.Construct();
         }
 
-        cameras[(int)cameraState].SetActive(true);
+        private void Update()
+        {
+            _state.UpdateState();
+        }
+
+        /// <summary>
+        /// Transition between game states, destroying the old one and constructing the new one
+        /// </summary>
+        /// <param name="state">New game state</param>
+        public void ChangeState(GameState.GameState state)
+        {
+            this._state.Destruct();
+            this._state = state;
+            this._state.Construct();
+        }
+
+        /// <summary>
+        /// Transition between virtual cameras
+        /// </summary>
+        /// <param name="cameraState">new camera</param>
+        public void ChangeCamera(CameraState cameraState)
+        {
+            foreach(var camera in cameras)
+            {
+                camera.SetActive(false);
+            }
+
+            cameras[(int)cameraState].SetActive(true);
+        }
     }
 }

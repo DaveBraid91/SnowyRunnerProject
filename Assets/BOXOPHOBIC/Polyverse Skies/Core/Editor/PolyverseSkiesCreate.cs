@@ -1,10 +1,11 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
+using BOXOPHOBIC.Polyverse_Skies.Core.Runtime;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace PolyverseSkiesAsset
+namespace BOXOPHOBIC.Polyverse_Skies.Core.Editor
 {
     public class PolyverseSkiesCreate
     {

@@ -1,30 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingState : BaseState
+namespace _Scripts.PlayerMotor.State
 {
-    public override void Construct()
+    public class FallingState : BaseState
     {
-        motor.anim?.SetTrigger("Fall");
-    }
+        public override void Construct()
+        {
+            //Trigger the "Fall" animation
+            motor.anim?.SetTrigger("Fall");
+        }
 
-    public override Vector3 ProcessMotion()
-    {
-        // Apply gravity
-        motor.ApplyGravity();
+        public override Vector3 ProcessMotion()
+        {
+            // Apply gravity
+            motor.ApplyGravity();
 
-        //Create return Vector
-        Vector3 movement = Vector3.zero;
+            //Create return Vector
+            Vector3 movement = Vector3.zero;
+            //It can't swap lanes while falling
+            movement = new Vector3(motor.SnapToLane(), motor.verticalVelocity, motor.baseRunSpeed);
 
-        movement = new Vector3(motor.SnapToLane(), motor.verticalVelocity, motor.baseRunSpeed);
+            return movement;
+        }
 
-        return movement;
-    }
-
-    public override void Transition()
-    {
-        if (motor.isGrounded)
-            motor.ChangeState(GetComponent<RunningState>());
+        public override void Transition()
+        {
+            //When it touches the ground it goes back to the Running state
+            if (motor.isGrounded)
+                motor.ChangeState(GetComponent<RunningState>());
+        }
     }
 }

@@ -1,26 +1,41 @@
 using UnityEngine;
 
-public class Chunk : MonoBehaviour
+namespace _Scripts.WorldGeneration
 {
-    [SerializeField] private float chunkLength;
-
-    public float GetChunkLength()
+    public class Chunk : MonoBehaviour
     {
-        return chunkLength;
-    }
+        [SerializeField] private float chunkLength;
 
-    public Chunk ShowChunk()
-    {
-        transform.gameObject.BroadcastMessage("OnShowChunk", SendMessageOptions.DontRequireReceiver);
+        /// <summary>
+        /// Gets how long in Unity Units the chunk is
+        /// </summary>
+        /// <returns>The chunk length</returns>
+        public float GetChunkLength()
+        {
+            return chunkLength;
+        }
 
-        gameObject.SetActive(true);
+        /// <summary>
+        /// Activates the chunk and informs the rest of the game
+        /// </summary>
+        /// <returns>The chunk component of the gameObject</returns>
+        public Chunk ShowChunk()
+        {
+            transform.gameObject.BroadcastMessage("OnShowChunk", SendMessageOptions.DontRequireReceiver);
 
-        return this;
-    }
+            gameObject.SetActive(true);
 
-    public Chunk HideChunk()
-    {
-        gameObject.SetActive(false);
-        return this;
+            return this;
+        }
+
+        /// <summary>
+        /// Disables the chunk
+        /// </summary>
+        /// <returns>The chunk component of the gameObject</returns>
+        public Chunk HideChunk()
+        {
+            gameObject.SetActive(false);
+            return this;
+        }
     }
 }

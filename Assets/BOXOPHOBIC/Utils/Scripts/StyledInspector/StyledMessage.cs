@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Boxophobic.StyledGUI
+namespace BOXOPHOBIC.Utils.Scripts.StyledInspector
 {
     public class StyledMessage : PropertyAttribute
     {

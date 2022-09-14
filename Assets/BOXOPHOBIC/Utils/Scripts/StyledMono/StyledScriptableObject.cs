@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
-using Boxophobic.StyledGUI;
 
-public class StyledScriptableObject: ScriptableObject
+namespace BOXOPHOBIC.Utils.Scripts.StyledMono
 {
+    public class StyledScriptableObject: ScriptableObject
+    {
 
+    }
 }
